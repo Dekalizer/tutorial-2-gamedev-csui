@@ -1,3 +1,5 @@
+Muhammad Tsaqib Ibadillah Wahid - 2006596983
+
 Latihan: Playtest
 1. Apa saja pesan log yang dicetak pada panel Output?
 - Saat memulai game, tercetak pesan "Platform initialized". Terdapat juga pesan "Reached objective!" ketika pesawat melewati area bagian kiri atas layar.
