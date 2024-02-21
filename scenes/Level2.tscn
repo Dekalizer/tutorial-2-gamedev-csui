@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/SnowPlatform.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/GreenShip.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/PlatformGreen.gd" type="Script" id=3]
+[ext_resource path="res://scenes/OutOfBound.gd" type="Script" id=4]
+[ext_resource path="res://scenes/ObjectiveArea.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 518, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 108.5, 37 )
+
+[node name="Level2" type="Node"]
+
+[node name="PlatformGreen" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="SnowPlatform" parent="PlatformGreen" instance=ExtResource( 1 )]
+position = Vector2( 512, 565 )
+
+[node name="SnowPlatform3" parent="PlatformGreen" instance=ExtResource( 1 )]
+position = Vector2( 442, 565 )
+
+[node name="SnowPlatform4" parent="PlatformGreen" instance=ExtResource( 1 )]
+position = Vector2( 582, 565 )
+
+[node name="GreenShip" parent="." instance=ExtResource( 2 )]
+position = Vector2( 512, 456 )
+mass = 0.01
+
+[node name="OutOfBound" type="Area2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutOfBound"]
+position = Vector2( 507, -10 )
+shape = SubResource( 1 )
+
+[node name="OutOfBound2" type="Area2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutOfBound2"]
+position = Vector2( 512, 611 )
+shape = SubResource( 1 )
+
+[node name="ObjectiveArea" type="Area2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectiveArea"]
+position = Vector2( 903.5, 49 )
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="OutOfBound" to="OutOfBound" method="_on_OutOfBound_body_entered"]
+[connection signal="body_entered" from="OutOfBound2" to="OutOfBound2" method="_on_OutOfBound_body_entered"]
+[connection signal="body_entered" from="ObjectiveArea" to="ObjectiveArea" method="_on_ObjectiveArea_body_entered"]
